@@ -1,17 +1,12 @@
-# hexo-theme-doc-seed
+# how to use
 
-This project is a skeleton for a documentation website using [Hexo](https://hexo.io) and [hexo-theme-doc](https://github.com/zalando-incubator/hexo-theme-doc).   
-You can use it to quickly bootstrap your documentation website.
-
-The seed contains the required structure and files to use Hexo and the theme, plus dummy content to show the usage of the main features of the theme.
-
-## Getting Started
-
-To get started have a look to https://zalando-incubator.github.io/hexo-theme-doc/get-started.html
-
-## More Informations
-
-For more informations please visit the [user documentation website](https://zalando-incubator.github.io/hexo-theme-doc).
+```
+git clone git@github.com:79199221/notes.git
+cd notes
+npm install
+hexo s			// 动态浏览
+hexo generate	// 生成静态
+```
 
 ## License
 
