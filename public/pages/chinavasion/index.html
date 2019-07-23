@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+
+    <title>hexo-theme-doc-seed | 我的文档 </title>
+    <meta name="description" content>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"title":"我的文档","path":"pages/chinavasion/index.html"},"data":{"navigation":{"logo":{"text":"XIAO DOC","type":"link","path":"index.html"},"main":[{"text":"目录","type":"label"},{"text":"入门","type":"link","path":"pages/starts/index.html","children":[{"text":"UI","type":"link","path":"pages/starts/index.html#mysql"},{"text":"UI","type":"link","path":"pages/starts/index.html#mysql"}]},{"text":"chinavasion","type":"label","path":"swagger/ui.html","children":[{"text":"关于项目","type":"link","path":"pages/chinavasion/index.html"},{"text":"数据库","type":"link","path":"pages/chinavasion/database.html"}]},{"text":"面试","type":"link","path":"pages/interviews/index.html","children":[]},{"text":"总结","type":"link","path":"/pages/notes/index.html","children":[{"text":"关于项目","type":"link","path":"pages/notes/index.html"}]},{"text":"To HTML","type":"link","path":"swagger/to-html.html"},{"text":"SUPPORT AND FEEDBACK","type":"label"},{"text":"Raise an Issue on Github","type":"link","path":"https://github.bus.zalan.do/stargate/hexo-stargate-doc-theme-seed/issues/new"}]}},"config":{"timezone":"UTC","root":"/","time_format":"HH:mm:ss","theme":"../node_modules/hexo-theme-doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"><span class="doc-navbar__logo__text">XIAO DOC</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <blockquote>
+<ol>
+<li>关于项目</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">项目采用lamp环境搭建，项目中url重写较多，apache认证</span><br><span class="line">项目用到memecached(windows环境没有memcached.dll，请慎重选择操作系统)</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<ol start="2">
+<li>关于mysql</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">创建数据库，数据表结构关联比较复杂，为防止失败：</span><br><span class="line">导入数据前禁用外键约束：SET FOREIGN_KEY_CHECKS=0;</span><br><span class="line">导入数据后开启外键约束：SET FOREIGN_KEY_CHECKS=1;</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<ol start="3">
+<li>关于git</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone http://122.5.32.82:7990/scm/cv/www.git	// cv 前台</span><br><span class="line">git config --global user.name &quot;xx&quot;</span><br><span class="line">git config --global user.email &quot;xx@starmerx.com&quot;</span><br><span class="line">git config core.ignorecase false // 项目是大小写敏感的</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<ol start="4">
+<li>关于ubuntu</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script>
+
+    
+
+  </body>
+</html>
