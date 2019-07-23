@@ -1736,47 +1736,56 @@
 
 -- ----------------------------
 ### most_search
--- ----------------------------
-DROP TABLE IF EXISTS `most_search`;
-CREATE TABLE `most_search` (
-  `id` int(32) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `count` int(11) NOT NULL DEFAULT '0',
-  `hits` int(11) NOT NULL DEFAULT '0',
-  `last_searched` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `most_search_count` (`count`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=762573 DEFAULT CHARSET=utf8;
+
+>
+
+```
+	CREATE TABLE `most_search` (
+	  `id` int(32) NOT NULL AUTO_INCREMENT,
+	  `name` varchar(255) DEFAULT NULL,
+	  `count` int(11) NOT NULL DEFAULT '0',
+	  `hits` int(11) NOT NULL DEFAULT '0',
+	  `last_searched` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+	  PRIMARY KEY (`id`),
+	  KEY `most_search_count` (`count`,`name`)
+	) ENGINE=InnoDB AUTO_INCREMENT=762573 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
 ### move_status
--- ----------------------------
-DROP TABLE IF EXISTS `move_status`;
-CREATE TABLE `move_status` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `label` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+> 
+
+```
+	CREATE TABLE `move_status` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `label` varchar(50) NOT NULL,
+	  PRIMARY KEY (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
 ### newsletter_subscriber
--- ----------------------------
-DROP TABLE IF EXISTS `newsletter_subscriber`;
-CREATE TABLE `newsletter_subscriber` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email_address` varchar(96) NOT NULL,
-  `firstname` varchar(32) NOT NULL,
-  `lastname` varchar(32) NOT NULL,
-  `recive_promotional_email` tinyint(4) NOT NULL DEFAULT '1',
-  `email_delivery_problem` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email_address` (`email_address`)
-) ENGINE=InnoDB AUTO_INCREMENT=25506 DEFAULT CHARSET=utf8;
+
+```
+	CREATE TABLE `newsletter_subscriber` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `email_address` varchar(96) NOT NULL,
+	  `firstname` varchar(32) NOT NULL,
+	  `lastname` varchar(32) NOT NULL,
+	  `recive_promotional_email` tinyint(4) NOT NULL DEFAULT '1',
+	  `email_delivery_problem` tinyint(4) NOT NULL DEFAULT '1',
+	  PRIMARY KEY (`id`),
+	  UNIQUE KEY `email_address` (`email_address`)
+	) ENGINE=InnoDB AUTO_INCREMENT=25506 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
 ### occ_log
--- ----------------------------
-DROP TABLE IF EXISTS `occ_log`;
+
+> 
+
+```
 CREATE TABLE `occ_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `old_courier_id` int(11) NOT NULL,
@@ -1791,6 +1800,7 @@ CREATE TABLE `occ_log` (
   CONSTRAINT `occ_log_ibfk_2` FOREIGN KEY (`new_courier_id`) REFERENCES `courier` (`id`),
   CONSTRAINT `occ_log_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21445 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
 ### openid_to_customer
