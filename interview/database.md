@@ -3,15 +3,12 @@
 > 活动状态表 是|否
 
 ```
-
 	CREATE TABLE `active` (
 	  `id` int(11) NOT NULL,
 	  `name` varchar(5) NOT NULL,
 	  `value` smallint(1) NOT NULL,
 	  PRIMARY KEY (`id`)
-
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 ```
 -- ----------------------------
 ### additional\_image
@@ -19,7 +16,6 @@
 > 产品附加图片
 
 ```
-
 	CREATE TABLE `additional_image` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `product_id` int(11) NOT NULL DEFAULT '0',	// 产品id
@@ -36,7 +32,6 @@
 	  CONSTRAINT `additional_image_ibfk_2` FOREIGN KEY (`transparent`) REFERENCES `active` (`id`),
 	  CONSTRAINT `additional_image_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=226110 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -80,15 +75,14 @@
 
 -- ----------------------------
 ### address\_book\_index [已废弃]
-```
 
+```
 	CREATE TABLE `address_book_index` (
 	  `id` bigint(10) unsigned NOT NULL COMMENT 'address_book.id',
 	  `weight` int(10) unsigned NOT NULL,
 	  `query` varchar(3072) NOT NULL,
 	  KEY `query` (`query`(255))
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 CONNECTION='sphinx://127.0.0.1:9312/ab_delta:ab_index';
-
 ```
 
 -- ----------------------------
@@ -111,7 +105,6 @@
 > 管理员组 
 
 ```
-
 	CREATE TABLE `admin_group` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(50) NOT NULL,
@@ -122,7 +115,6 @@
 	  KEY `active_id` (`active_id`),
 	  CONSTRAINT `admin_group_ibfk_1` FOREIGN KEY (`active_id`) REFERENCES `active` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=346 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -131,7 +123,6 @@
 > 
 
 ```
-
 	CREATE TABLE `admin_group_rule` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `group_id` int(11) NOT NULL,
@@ -149,7 +140,6 @@
 	  CONSTRAINT `admin_group_rule_ibfk_3` FOREIGN KEY (`object_type_id`) REFERENCES `interface_object_list` (`id`),
 	  CONSTRAINT `admin_group_rule_ibfk_4` FOREIGN KEY (`permission_id`) REFERENCES `interface_permission_list` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=7869 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -157,9 +147,7 @@
 
 > 用来保存 管理员 执行的请求
 
-```
-
-	// 
+``` 
 	CREATE TABLE `admin_saved_query` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `admin_user_id` int(11) DEFAULT NULL,
@@ -177,7 +165,6 @@
 	  CONSTRAINT `admin_saved_query_ibfk_2` FOREIGN KEY (`admin_group_id`) REFERENCES `admin_group` (`id`),
 	  CONSTRAINT `admin_saved_query_ibfk_3` FOREIGN KEY (`site_id`) REFERENCES `site` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=931 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -185,7 +172,6 @@
 ### admin_saved_status_cache [已废弃]
 
 ```
-
 	CREATE TABLE `admin_saved_status_cache` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `admin_saved_query_id` int(11) NOT NULL,
@@ -199,7 +185,6 @@
 	  CONSTRAINT `admin_saved_status_cache_ibfk_2` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`id`),
 	  CONSTRAINT `admin_saved_status_cache_ibfk_3` FOREIGN KEY (`order_group_id`) REFERENCES `order_group` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -228,6 +213,7 @@
 
 -- ----------------------------
 ### admin\_user\_history
+
 ```
 	CREATE TABLE `admin_user_history` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -241,7 +227,6 @@
 	  CONSTRAINT `admin_user_history_ibfk_1` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`id`),
 	  CONSTRAINT `admin_user_history_ibfk_2` FOREIGN KEY (`admin_saved_query_id`) REFERENCES `admin_saved_query` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=1329442 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -250,7 +235,6 @@
 > 只一条数据 是否在用 不清楚
 
 ```
-
 	CREATE TABLE `admin_user_key` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `admin_user_id` int(11) NOT NULL,
@@ -265,14 +249,12 @@
 	  CONSTRAINT `admin_user_key_ibfk_1` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`id`),
 	  CONSTRAINT `admin_user_key_ibfk_2` FOREIGN KEY (`active_id`) REFERENCES `active` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
 ### admin\_user\_rule
 
 ```
-
 	CREATE TABLE `admin_user_rule` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `user_id` int(11) NOT NULL,
@@ -298,7 +280,6 @@
 > admin & group 中间表
 
 ```
-
 	CREATE TABLE `admin_user_to_group` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `user_id` int(11) NOT NULL,
@@ -309,7 +290,6 @@
 	  CONSTRAINT `admin_user_to_group_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `admin_user` (`id`),
 	  CONSTRAINT `admin_user_to_group_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `admin_group` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=5289 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -338,15 +318,12 @@
 > 表中一条数据
 
 ```
-
 	CREATE TABLE `api` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(64) NOT NULL,
 	  `type` int(11) NOT NULL,
 	  PRIMARY KEY (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-
 ```
 
 -- ----------------------------
@@ -355,14 +332,12 @@
 > 空表
 
 ```
-
 	CREATE TABLE `article_index` (
 	  `id` int(10) unsigned NOT NULL COMMENT 'article_index_cache.id',
 	  `weight` int(10) unsigned NOT NULL,
 	  `query` varchar(3072) NOT NULL,
 	  KEY `query` (`query`(255))
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 CONNECTION='sphinx://127.0.0.1:9312/article_index';
-
 ```
 
 -- ----------------------------
@@ -387,7 +362,6 @@
 	  CONSTRAINT `article_index_cache_ibfk_1` FOREIGN KEY (`page_id`) REFERENCES `page` (`id`),
 	  CONSTRAINT `article_index_cache_ibfk_2` FOREIGN KEY (`site_id`) REFERENCES `site` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=20596 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -412,7 +386,6 @@
 > 空表
 
 ```
-	
 	CREATE TABLE `attribute_to_product` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `attribute_id` int(11) NOT NULL,
@@ -424,7 +397,6 @@
 	  CONSTRAINT `attribute_to_product_ibfk_1` FOREIGN KEY (`attribute_id`) REFERENCES `attribute` (`id`),
 	  CONSTRAINT `attribute_to_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -457,7 +429,6 @@
 > 空表
 
 ```
-
 	CREATE TABLE `attribute_type_to_category` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `attribute_type_id` int(11) NOT NULL,
@@ -469,7 +440,6 @@
 	  CONSTRAINT `attribute_type_to_category_ibfk_1` FOREIGN KEY (`attribute_type_id`) REFERENCES `attribute_type` (`id`),
 	  CONSTRAINT `attribute_type_to_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -478,7 +448,6 @@
 > mark
 
 ```
-
 	CREATE TABLE `battery` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(255) NOT NULL,
@@ -487,7 +456,6 @@
 	  KEY `battery_active_FK` (`is_standard`),
 	  CONSTRAINT `battery_active_FK` FOREIGN KEY (`is_standard`) REFERENCES `active` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -496,7 +464,6 @@
 > 购物车
 
 ```
-
 	CREATE TABLE `cart` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `product_id` int(11) NOT NULL,
@@ -522,7 +489,6 @@
 	  CONSTRAINT `cart_ibfk_4` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`),
 	  CONSTRAINT `cart_ibfk_5` FOREIGN KEY (`address_book_id`) REFERENCES `address_book` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=8779091 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -531,7 +497,6 @@
 > 产品栏目表
 
 ```
-
 	CREATE TABLE `category` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `site_id` int(11) DEFAULT '1',
@@ -551,7 +516,6 @@
 	  CONSTRAINT `category_ibfk_2` FOREIGN KEY (`parent_id`) REFERENCES `category` (`id`),
 	  CONSTRAINT `category_ibfk_3` FOREIGN KEY (`active`) REFERENCES `active` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=533 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -561,7 +525,6 @@
 
 
 ```
-
 	CREATE TABLE `category_description` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `category_id` int(11) NOT NULL DEFAULT '0',
@@ -575,7 +538,6 @@
 	  KEY `url` (`url`),
 	  CONSTRAINT `category_description_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=255 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -584,14 +546,12 @@
 > 
 
 ```
-
 	CREATE TABLE `category\_index` (
 	  `id` int(10) unsigned NOT NULL COMMENT 'category.id',
 	  `weight` int(10) unsigned NOT NULL,
 	  `query` varchar(3072) NOT NULL,
 	  KEY `query` (`query`(255))
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 CONNECTION='sphinx://127.0.0.1:9312/category_index';
-
 ```
 
 -- ----------------------------
@@ -600,7 +560,6 @@
 > 配置信息
 
 ```
-
 	CREATE TABLE `configuration` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `key` varchar(60) NOT NULL,
@@ -612,7 +571,6 @@
 	  KEY `active` (`active`),
 	  CONSTRAINT `configuration_ibfk_1` FOREIGN KEY (`active`) REFERENCES `active` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -621,7 +579,6 @@
 > mark
 
 ```
-
 	CREATE TABLE `content_group` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `category_id` int(11) NOT NULL DEFAULT '0',
@@ -631,7 +588,6 @@
 	  KEY `categories_id` (`category_id`),
 	  CONSTRAINT `content_group_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=283 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -640,7 +596,6 @@
 > 国家
 
 ```
-
 	CREATE TABLE `country` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(64) DEFAULT NULL,
@@ -667,7 +622,6 @@
 	  CONSTRAINT `country_ibfk_2` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`),
 	  CONSTRAINT `country_ibfk_3` FOREIGN KEY (`socket_id`) REFERENCES `socket_list` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=264 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -676,7 +630,6 @@
 > 州
 
 ```
-
 	CREATE TABLE `country_state` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `country_id` int(11) NOT NULL DEFAULT '0',
@@ -686,7 +639,6 @@
 	  KEY `zone_country_id` (`country_id`),
 	  CONSTRAINT `country_state_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -695,7 +647,6 @@
 > 优惠券 (用户使用优惠券情况）
 
 ```
-
 	CREATE TABLE `coupon` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(64) NOT NULL,								// 优惠券名
@@ -752,7 +703,6 @@
 	  CONSTRAINT `coupon_ibfk_8` FOREIGN KEY (`specials_allowed_id`) REFERENCES `active` (`id`),
 	  CONSTRAINT `coupon_ibfk_9` FOREIGN KEY (`destination_country_id`) REFERENCES `country` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=91385 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -761,7 +711,6 @@
 >
 
 ```
-
 	CREATE TABLE `coupon_log` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `coupon_id` int(11) NOT NULL,
@@ -776,7 +725,6 @@
 	  CONSTRAINT `coupon_log_ibfk_1` FOREIGN KEY (`coupon_id`) REFERENCES `coupon` (`id`),
 	  CONSTRAINT `coupon_log_ibfk_2` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -785,7 +733,6 @@
 > 物流
 
 ```
-
 	CREATE TABLE `courier` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(50) NOT NULL,								// 物流名称
@@ -830,14 +777,12 @@
 	  CONSTRAINT `courier_ibfk_8` FOREIGN KEY (`type_id`) REFERENCES `courier_type` (`id`),
 	  CONSTRAINT `courier_ibfk_9` FOREIGN KEY (`phone_required`) REFERENCES `active` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
 ### courier\_remote\_area
 
 ```
-
 	CREATE TABLE `courier_remote_area` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `courier_id` int(11) NOT NULL,
@@ -851,14 +796,12 @@
 	  CONSTRAINT `courier_remote_area_ibfk_1` FOREIGN KEY (`courier_id`) REFERENCES `courier` (`id`),
 	  CONSTRAINT `courier_remote_area_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=1385670 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
 ### courier\_to\_country
 
 ```
-
 	CREATE TABLE `courier_to_country` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `country_id` int(11) NOT NULL,
@@ -880,7 +823,6 @@
 	  CONSTRAINT `courier_to_country_ibfk_4` FOREIGN KEY (`active_id`) REFERENCES `active` (`id`),
 	  CONSTRAINT `courier_to_country_ibfk_5` FOREIGN KEY (`courier_zone_id`) REFERENCES `courier_zone` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=6255 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -889,7 +831,6 @@
 > 物流方式 (直发， 货代， Advanced）
 
 ```
-
 	CREATE TABLE `courier_type` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(32) NOT NULL,
@@ -897,7 +838,6 @@
 	  PRIMARY KEY (`id`),
 	  UNIQUE KEY `name` (`name`)
 	) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -906,7 +846,6 @@
 > 物流渠道???
 
 ```
-
 	CREATE TABLE `courier_zone` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `courier_id` int(11) NOT NULL,
@@ -916,7 +855,6 @@
 	  KEY `courier_id` (`courier_id`),
 	  CONSTRAINT `courier_zone_ibfk_1` FOREIGN KEY (`courier_id`) REFERENCES `courier` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=547 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -925,7 +863,6 @@
 > 定时任务
 
 ```
-
 	CREATE TABLE `cron_job` (
 	  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	  `name` varchar(50) DEFAULT NULL,
@@ -938,7 +875,6 @@
 	  PRIMARY KEY (`id`),
 	  UNIQUE KEY `name` (`name`)
 	) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -947,7 +883,6 @@
 > 定时任务历史记录
 
 ```
-
 	CREATE TABLE `cron_job_history` (
 	  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	  `job_id` int(11) unsigned NOT NULL,				// =>cron_job.id
@@ -960,7 +895,6 @@
 	  KEY `job_id` (`job_id`),
 	  CONSTRAINT `fk_cron_job_id` FOREIGN KEY (`job_id`) REFERENCES `cron_job` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=427177 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -969,7 +903,6 @@
 > 币种
 
 ```
-
 	CREATE TABLE `currency` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `title` varchar(32) DEFAULT NULL,
@@ -987,7 +920,6 @@
 	  PRIMARY KEY (`id`),
 	  KEY `code` (`code`)
 	) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -996,7 +928,6 @@
 > 各币种的汇率修改历史记录
 
 ```
-
 	CREATE TABLE `currency_history` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `currencies_id` int(11) DEFAULT NULL,		// => currency.id
@@ -1009,7 +940,6 @@
 	  KEY `currencies_id` (`currencies_id`),
 	  CONSTRAINT `currency_history_ibfk_1` FOREIGN KEY (`currencies_id`) REFERENCES `currency` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=422371 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1018,7 +948,6 @@
 > 用户
 
 ```
-
 	CREATE TABLE `customer` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `cluster_id` int(11) NOT NULL DEFAULT '1',		// ??? 没有找到对应的表
@@ -1039,7 +968,6 @@
 	  CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`status_id`) REFERENCES `customer_status` (`id`),
 	  CONSTRAINT `customer_ibfk_2` FOREIGN KEY (`default_address_id`) REFERENCES `address_book` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=1937978 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1048,7 +976,6 @@
 > 表中一条数据
 
 ```
-
 	CREATE TABLE `customer_api_access` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) NOT NULL,
@@ -1059,7 +986,6 @@
 	  CONSTRAINT `customer_api_access_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
 	  CONSTRAINT `customer_api_access_ibfk_2` FOREIGN KEY (`api_id`) REFERENCES `api` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1068,7 +994,6 @@
 > 表中无数据
 
 ```
-
 	CREATE TABLE `customer_api_log` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) DEFAULT NULL,
@@ -1083,7 +1008,6 @@
 	  KEY `customer_id` (`customer_id`),
 	  CONSTRAINT `customer_api_log_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1092,7 +1016,6 @@
 > 用户头像  // id与customer_id唯一
 
 ```
-
 	CREATE TABLE `customer_avatar` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) NOT NULL,
@@ -1104,7 +1027,6 @@
 	  CONSTRAINT `customer_avatar_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
 	  CONSTRAINT `customer_avatar_ibfk_2` FOREIGN KEY (`force_mistery_man`) REFERENCES `active` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=412 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1113,14 +1035,12 @@
 >
 
 ```
-
 	CREATE TABLE `customer_index` (
 	  `id` bigint(10) unsigned NOT NULL COMMENT 'customer.id',
 	  `weight` int(10) unsigned NOT NULL,
 	  `query` varchar(3072) NOT NULL,
 	  KEY `query` (`query`(255))
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 CONNECTION='sphinx://127.0.0.1:9312/c_delta:c_index';
-
 ```
 
 -- ----------------------------
@@ -1129,7 +1049,6 @@
 >
 
 ```
-
 	CREATE TABLE `customer_info` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) NOT NULL DEFAULT '0',
@@ -1148,14 +1067,12 @@
 	  KEY `recive_promotional_email` (`recive_promotional_email`),
 	  CONSTRAINT `customer_info_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=1885934 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
 ### customer_key
 
 ```
-
 	CREATE TABLE `customer_key` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) NOT NULL,
@@ -1170,7 +1087,6 @@
 	  CONSTRAINT `customer_key_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
 	  CONSTRAINT `customer_key_ibfk_2` FOREIGN KEY (`active_id`) REFERENCES `active` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=9269 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1179,7 +1095,6 @@
 > 
 
 ```
-
 	CREATE TABLE `customer_log` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) NOT NULL,
@@ -1194,7 +1109,6 @@
 	  CONSTRAINT `customer_log_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
 	  CONSTRAINT `customer_log_ibfk_2` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=2274644 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1203,7 +1117,6 @@
 >
 
 ```
-
 	CREATE TABLE `customer_note` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) NOT NULL,
@@ -1219,7 +1132,6 @@
 	  CONSTRAINT `customer_note_admin_user_FK` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`id`),
 	  CONSTRAINT `customer_note_customer_FK` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=289 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1228,13 +1140,11 @@
 > 用户状态
 
 ```
-
 	CREATE TABLE `customer_status` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(30) NOT NULL,
 	  PRIMARY KEY (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1243,7 +1153,6 @@
 > 空表
 
 ```
-
 	CREATE TABLE `customer_to_curier` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) DEFAULT NULL,
@@ -1264,7 +1173,6 @@
 	  CONSTRAINT `customer_to_curier_ibfk_4` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
 	  CONSTRAINT `customer_to_curier_ibfk_5` FOREIGN KEY (`address_book_id`) REFERENCES `address_book` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1273,7 +1181,6 @@
 >
 
 ```
-
 	CREATE TABLE `customer_to_flag` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) NOT NULL,
@@ -1288,7 +1195,6 @@
 	  CONSTRAINT `customer_to_flag_ibfk_2` FOREIGN KEY (`flag_id`) REFERENCES `flag` (`id`),
 	  CONSTRAINT `customer_to_flag_ibfk_3` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=1236516 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1297,7 +1203,6 @@
 >
 
 ```
-
 	CREATE TABLE `custom_chart` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `admin_saved_query_id` int(11) DEFAULT NULL,
@@ -1314,7 +1219,6 @@
 	  KEY `saved_query_id` (`admin_saved_query_id`),
 	  CONSTRAINT `custom_chart_ibfk_1` FOREIGN KEY (`admin_saved_query_id`) REFERENCES `admin_saved_query` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1323,7 +1227,6 @@
 > ???
 
 ```
-
 	CREATE TABLE `cybs` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `status_id` int(11) NOT NULL,
@@ -1361,7 +1264,6 @@
 	  CONSTRAINT `cybs_ibfk_4` FOREIGN KEY (`ship_address_id`) REFERENCES `address_book` (`id`),
 	  CONSTRAINT `cybs_ibfk_5` FOREIGN KEY (`status_id`) REFERENCES `cybs_status` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=138501 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1394,14 +1296,12 @@
 > ???
 
 ```
-
 	CREATE TABLE `cybs_status` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(32) NOT NULL,
 	  `customer_name` varchar(32) NOT NULL,
 	  PRIMARY KEY (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1410,7 +1310,6 @@
 >
 
 ```
-
 	CREATE TABLE `event_group` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `date_create` datetime NOT NULL,
@@ -1421,14 +1320,12 @@
 	  KEY `date_create` (`date_create`),
 	  CONSTRAINT `event_group_ibfk_1` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=840989 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
 ### event\_log
 
 ```
-
 	CREATE TABLE `event_log` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `customer_id` int(11) DEFAULT NULL,
@@ -1455,7 +1352,6 @@
 	  CONSTRAINT `event_log_ibfk_4` FOREIGN KEY (`template_page_id`) REFERENCES `page` (`id`),
 	  CONSTRAINT `event_log_ibfk_5` FOREIGN KEY (`site_id`) REFERENCES `site` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=22488402 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1464,7 +1360,6 @@
 > 空表
 
 ```
-
 	CREATE TABLE `event_log_to_views` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `event_log_id` int(11) NOT NULL,
@@ -1480,7 +1375,6 @@
 	  CONSTRAINT `event_log_to_views_ibfk_2` FOREIGN KEY (`admin_user_id`) REFERENCES `admin_user` (`id`),
 	  CONSTRAINT `event_log_to_views_ibfk_3` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1489,7 +1383,6 @@
 >
 
 ```
-
 	CREATE TABLE `event_to_group` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `event_group_id` int(11) NOT NULL,
@@ -1500,7 +1393,6 @@
 	  CONSTRAINT `event_to_group_ibfk_1` FOREIGN KEY (`event_log_id`) REFERENCES `event_log` (`id`),
 	  CONSTRAINT `event_to_group_ibfk_2` FOREIGN KEY (`event_group_id`) REFERENCES `event_group` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=3693838 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1509,7 +1401,6 @@
 >
 
 ```
-
 	CREATE TABLE `export_history` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `date` datetime NOT NULL,
@@ -1517,7 +1408,6 @@
 	  `comment` varchar(50) DEFAULT NULL,		// 现存数据中 comment都为null
 	  PRIMARY KEY (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=98442 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1526,13 +1416,11 @@
 >
 
 ```
-
 	CREATE TABLE `external_keyword` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `affiliate_keyword` varchar(32) DEFAULT NULL,
 	  PRIMARY KEY (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1541,14 +1429,12 @@
 >
 
 ```
-
 	CREATE TABLE `flag` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `type` int(11) NOT NULL,
 	  `name` varchar(60) NOT NULL,
 	  PRIMARY KEY (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1557,7 +1443,6 @@
 > ???
 
 ```
-
 	CREATE TABLE `historical_stock` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `stock` decimal(15,2) NOT NULL,
@@ -1568,7 +1453,6 @@
 	  PRIMARY KEY (`id`),
 	  KEY `when` (`when`)
 	) ENGINE=InnoDB AUTO_INCREMENT=4146 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1577,7 +1461,6 @@
 > ???
 
 ```
-
 	CREATE TABLE `image` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `filename` varchar(40) NOT NULL,
@@ -1589,7 +1472,6 @@
 	  `date_uploaded` datetime NOT NULL,
 	  PRIMARY KEY (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=2648 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1598,14 +1480,12 @@
 >
 
 ```
-
 	CREATE TABLE `interface_object_list` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(50) NOT NULL,
 	  PRIMARY KEY (`id`),
 	  UNIQUE KEY `name` (`name`)
 	) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1614,14 +1494,12 @@
 > 
 
 ```
-
 	CREATE TABLE `interface_permission_list` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(50) NOT NULL,
 	  PRIMARY KEY (`id`),
 	  UNIQUE KEY `name` (`name`)
 	) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1630,7 +1508,6 @@
 >
 
 ```
-
 	CREATE TABLE `interface_to_menu` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `name` varchar(60) NOT NULL,
@@ -1651,7 +1528,6 @@
 	  CONSTRAINT `interface_to_menu_ibfk_4` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`),
 	  CONSTRAINT `interface_to_menu_ibfk_5` FOREIGN KEY (`site_id`) REFERENCES `site` (`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=1582 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1660,7 +1536,6 @@
 >
 
 ```
-
 	CREATE TABLE `iptocountry` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `ipfrom` bigint(20) NOT NULL,
@@ -1670,7 +1545,6 @@
 	  KEY `ipfrom` (`ipfrom`),
 	  KEY `ipto` (`ipto`)
 	) ENGINE=InnoDB AUTO_INCREMENT=47406829 DEFAULT CHARSET=utf8;
-
 ```
 
 -- ----------------------------
@@ -1786,226 +1660,239 @@
 > 
 
 ```
-CREATE TABLE `occ_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `old_courier_id` int(11) NOT NULL,
-  `new_courier_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `date_created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `old_courier_id` (`old_courier_id`),
-  KEY `new_courier_id` (`new_courier_id`),
-  KEY `order_id` (`order_id`),
-  CONSTRAINT `occ_log_ibfk_1` FOREIGN KEY (`old_courier_id`) REFERENCES `courier` (`id`),
-  CONSTRAINT `occ_log_ibfk_2` FOREIGN KEY (`new_courier_id`) REFERENCES `courier` (`id`),
-  CONSTRAINT `occ_log_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21445 DEFAULT CHARSET=utf8;
+	CREATE TABLE `occ_log` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `old_courier_id` int(11) NOT NULL,		// =>couries.id
+	  `new_courier_id` int(11) NOT NULL,
+	  `order_id` int(11) NOT NULL,
+	  `date_created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+	  PRIMARY KEY (`id`),
+	  KEY `old_courier_id` (`old_courier_id`),
+	  KEY `new_courier_id` (`new_courier_id`),
+	  KEY `order_id` (`order_id`),
+	  CONSTRAINT `occ_log_ibfk_1` FOREIGN KEY (`old_courier_id`) REFERENCES `courier` (`id`),
+	  CONSTRAINT `occ_log_ibfk_2` FOREIGN KEY (`new_courier_id`) REFERENCES `courier` (`id`),
+	  CONSTRAINT `occ_log_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=21445 DEFAULT CHARSET=utf8;
 ```
 
 -- ----------------------------
 ### openid_to_customer
--- ----------------------------
-DROP TABLE IF EXISTS `openid_to_customer`;
-CREATE TABLE `openid_to_customer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `open_id` varchar(100) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `hash` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `open_id` (`open_id`),
-  KEY `customer_id` (`customer_id`),
-  KEY `hash` (`hash`),
-  CONSTRAINT `openid_to_customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=333 DEFAULT CHARSET=utf8;
+
+```
+	CREATE TABLE `openid_to_customer` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `open_id` varchar(100) NOT NULL,			// http://id.chinavasion.com/xxx
+	  `customer_id` int(11) NOT NULL,			// => customer.id
+	  `hash` bigint(20) NOT NULL,
+	  PRIMARY KEY (`id`),
+	  KEY `open_id` (`open_id`),
+	  KEY `customer_id` (`customer_id`),
+	  KEY `hash` (`hash`),
+	  CONSTRAINT `openid_to_customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=333 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
 ### openid_to_user
--- ----------------------------
-DROP TABLE IF EXISTS `openid_to_user`;
-CREATE TABLE `openid_to_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `open_id` varchar(100) NOT NULL,
-  `users_id` int(11) NOT NULL,
-  `hash` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `users_id` (`users_id`),
-  CONSTRAINT `openid_to_user_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `admin_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=747 DEFAULT CHARSET=utf8;
+
+```
+	CREATE TABLE `openid_to_user` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `open_id` varchar(100) NOT NULL,
+	  `users_id` int(11) NOT NULL,
+	  `hash` bigint(20) NOT NULL,
+	  PRIMARY KEY (`id`),
+	  KEY `users_id` (`users_id`),
+	  CONSTRAINT `openid_to_user_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `admin_user` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=747 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
 ### order
--- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `customer_id` int(11) NOT NULL,
-  `payment_method` varchar(32) DEFAULT NULL,
-  `order_status_id` int(11) NOT NULL DEFAULT '0',
-  `last_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `date_purchased` datetime DEFAULT NULL,
-  `date_payment` datetime DEFAULT NULL,
-  `date_finished` datetime DEFAULT NULL,
-  `date_warehouse` datetime DEFAULT NULL,
-  `currency` char(3) DEFAULT NULL,
-  `currency_value` decimal(14,6) DEFAULT NULL,
-  `delivery_tracking_nr` varchar(50) DEFAULT NULL,
-  `shipping_value` decimal(15,4) NOT NULL,
-  `shipping_value_declared` decimal(15,4) DEFAULT NULL,
-  `courier_id` int(11) NOT NULL,
-  `subtotal_value` decimal(14,6) NOT NULL,
-  `customers_address_id` int(11) NOT NULL,
-  `delivery_address_id` int(11) NOT NULL,
-  `billing_address_id` int(11) NOT NULL,
-  `ip` int(10) unsigned DEFAULT NULL,
-  `coupon_id` int(11) DEFAULT NULL,
-  `insurance` decimal(14,6) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `customers_id` (`customer_id`),
-  KEY `orders_status` (`order_status_id`),
-  KEY `currency` (`currency`),
-  KEY `date_purchased` (`date_purchased`),
-  KEY `last_modified` (`last_modified`),
-  KEY `sync_idx` (`id`,`last_modified`),
-  KEY `delivery_address_id` (`delivery_address_id`),
-  KEY `shipping_agent_id` (`courier_id`),
-  KEY `order_ibfk_5` (`customers_address_id`),
-  KEY `order_ibfk_6` (`billing_address_id`),
-  KEY `coupon_id` (`coupon_id`),
-  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`id`),
-  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`delivery_address_id`) REFERENCES `address_book` (`id`),
-  CONSTRAINT `order_ibfk_3` FOREIGN KEY (`courier_id`) REFERENCES `courier` (`id`),
-  CONSTRAINT `order_ibfk_4` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `order_ibfk_5` FOREIGN KEY (`customers_address_id`) REFERENCES `address_book` (`id`),
-  CONSTRAINT `order_ibfk_6` FOREIGN KEY (`billing_address_id`) REFERENCES `address_book` (`id`),
-  CONSTRAINT `order_ibfk_7` FOREIGN KEY (`coupon_id`) REFERENCES `coupon` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2907807 DEFAULT CHARSET=utf8;
+
+```
+	CREATE TABLE `order` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `customer_id` int(11) NOT NULL,							// => customer.id
+	  `payment_method` varchar(32) DEFAULT NULL,
+	  `order_status_id` int(11) NOT NULL DEFAULT '0',			// => order_status.id
+	  `last_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	  `date_purchased` datetime DEFAULT NULL,					// 采购时间
+	  `date_payment` datetime DEFAULT NULL,						// 付款时间
+	  `date_finished` datetime DEFAULT NULL,					// 完成时间
+	  `date_warehouse` datetime DEFAULT NULL,					
+	  `currency` char(3) DEFAULT NULL,							// 币种（没有和currency表关联）
+	  `currency_value` decimal(14,6) DEFAULT NULL,				// 应该是相对于美元的汇率
+	  `delivery_tracking_nr` varchar(50) DEFAULT NULL,
+	  `shipping_value` decimal(15,4) NOT NULL,
+	  `shipping_value_declared` decimal(15,4) DEFAULT NULL,
+	  `courier_id` int(11) NOT NULL,
+	  `subtotal_value` decimal(14,6) NOT NULL,
+	  `customers_address_id` int(11) NOT NULL,
+	  `delivery_address_id` int(11) NOT NULL,
+	  `billing_address_id` int(11) NOT NULL,
+	  `ip` int(10) unsigned DEFAULT NULL,
+	  `coupon_id` int(11) DEFAULT NULL,
+	  `insurance` decimal(14,6) NOT NULL,						// 保险
+	  PRIMARY KEY (`id`),
+	  KEY `customers_id` (`customer_id`),
+	  KEY `orders_status` (`order_status_id`),
+	  KEY `currency` (`currency`),
+	  KEY `date_purchased` (`date_purchased`),
+	  KEY `last_modified` (`last_modified`),
+	  KEY `sync_idx` (`id`,`last_modified`),
+	  KEY `delivery_address_id` (`delivery_address_id`),
+	  KEY `shipping_agent_id` (`courier_id`),
+	  KEY `order_ibfk_5` (`customers_address_id`),
+	  KEY `order_ibfk_6` (`billing_address_id`),
+	  KEY `coupon_id` (`coupon_id`),
+	  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`id`),
+	  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`delivery_address_id`) REFERENCES `address_book` (`id`),
+	  CONSTRAINT `order_ibfk_3` FOREIGN KEY (`courier_id`) REFERENCES `courier` (`id`),
+	  CONSTRAINT `order_ibfk_4` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+	  CONSTRAINT `order_ibfk_5` FOREIGN KEY (`customers_address_id`) REFERENCES `address_book` (`id`),
+	  CONSTRAINT `order_ibfk_6` FOREIGN KEY (`billing_address_id`) REFERENCES `address_book` (`id`),
+	  CONSTRAINT `order_ibfk_7` FOREIGN KEY (`coupon_id`) REFERENCES `coupon` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=2907807 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
-### order_affiliate_pixel
--- ----------------------------
-DROP TABLE IF EXISTS `order_affiliate_pixel`;
-CREATE TABLE `order_affiliate_pixel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL,
-  `type` tinyint(4) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ip` int(11) NOT NULL,
-  `line` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `order_id` (`order_id`),
-  CONSTRAINT `order_affiliate_pixel_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=462872 DEFAULT CHARSET=utf8;
+### order\_affiliate\_pixel
+
+
+```
+	CREATE TABLE `order_affiliate_pixel` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `order_id` int(11) NOT NULL,
+	  `type` tinyint(4) NOT NULL,
+	  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  `ip` int(11) NOT NULL,
+	  `line` int(11) NOT NULL DEFAULT '0',					// ???
+	  PRIMARY KEY (`id`),
+	  KEY `order_id` (`order_id`),
+	  CONSTRAINT `order_affiliate_pixel_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=462872 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
 ### order_comment
--- ----------------------------
-DROP TABLE IF EXISTS `order_comment`;
-CREATE TABLE `order_comment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL,
-  `comment` text NOT NULL,
-  `last_update` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `order_id` (`order_id`),
-  CONSTRAINT `order_comment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=394773 DEFAULT CHARSET=utf8;
+
+> 订单评论表
+
+```
+	CREATE TABLE `order_comment` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `order_id` int(11) NOT NULL,
+	  `comment` text NOT NULL,
+	  `last_update` datetime NOT NULL,
+	  PRIMARY KEY (`id`),
+	  KEY `order_id` (`order_id`),
+	  CONSTRAINT `order_comment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=394773 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
 ### order_courier_change
--- ----------------------------
-DROP TABLE IF EXISTS `order_courier_change`;
-CREATE TABLE `order_courier_change` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_log_id` int(11) NOT NULL,
-  `price_before` decimal(15,4) NOT NULL,
-  `price_after` decimal(15,4) NOT NULL,
-  `before_courier_id` int(11) NOT NULL,
-  `after_courier_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `order_courier_change_ibfk_1` (`event_log_id`),
-  KEY `order_courier_change_ibfk_2` (`before_courier_id`),
-  KEY `order_courier_change_ibfk_3` (`after_courier_id`),
-  CONSTRAINT `order_courier_change_ibfk_1` FOREIGN KEY (`event_log_id`) REFERENCES `event_log` (`id`),
-  CONSTRAINT `order_courier_change_ibfk_2` FOREIGN KEY (`before_courier_id`) REFERENCES `courier` (`id`),
-  CONSTRAINT `order_courier_change_ibfk_3` FOREIGN KEY (`after_courier_id`) REFERENCES `courier` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=95261 DEFAULT CHARSET=utf8;
+
+```
+	CREATE TABLE `order_courier_change` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `event_log_id` int(11) NOT NULL,
+	  `price_before` decimal(15,4) NOT NULL,
+	  `price_after` decimal(15,4) NOT NULL,
+	  `before_courier_id` int(11) NOT NULL,
+	  `after_courier_id` int(11) NOT NULL,
+	  PRIMARY KEY (`id`),
+	  KEY `order_courier_change_ibfk_1` (`event_log_id`),
+	  KEY `order_courier_change_ibfk_2` (`before_courier_id`),
+	  KEY `order_courier_change_ibfk_3` (`after_courier_id`),
+	  CONSTRAINT `order_courier_change_ibfk_1` FOREIGN KEY (`event_log_id`) REFERENCES `event_log` (`id`),
+	  CONSTRAINT `order_courier_change_ibfk_2` FOREIGN KEY (`before_courier_id`) REFERENCES `courier` (`id`),
+	  CONSTRAINT `order_courier_change_ibfk_3` FOREIGN KEY (`after_courier_id`) REFERENCES `courier` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=95261 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
-### order_group
--- ----------------------------
-DROP TABLE IF EXISTS `order_group`;
-CREATE TABLE `order_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(60) NOT NULL,
-  `level` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8;
+### order\_group
+
+```
+	CREATE TABLE `order_group` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `name` varchar(60) NOT NULL,
+	  `level` int(11) NOT NULL DEFAULT '0',
+	  PRIMARY KEY (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
-### order_group_description
--- ----------------------------
-DROP TABLE IF EXISTS `order_group_description`;
-CREATE TABLE `order_group_description` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_group_id` int(11) NOT NULL,
-  `long_description` text NOT NULL,
-  `short_description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `order_group_description_ibfk_1` (`order_group_id`),
-  CONSTRAINT `order_group_description_ibfk_1` FOREIGN KEY (`order_group_id`) REFERENCES `order_group` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8;
+### order\_group\_description
+
+```
+	CREATE TABLE `order_group_description` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `order_group_id` int(11) NOT NULL,
+	  `long_description` text NOT NULL,
+	  `short_description` varchar(255) DEFAULT NULL,
+	  PRIMARY KEY (`id`),
+	  KEY `order_group_description_ibfk_1` (`order_group_id`),
+	  CONSTRAINT `order_group_description_ibfk_1` FOREIGN KEY (`order_group_id`) REFERENCES `order_group` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
-### order_index
--- ----------------------------
-DROP TABLE IF EXISTS `order_index`;
-CREATE TABLE `order_index` (
-  `id` int(10) unsigned NOT NULL COMMENT 'order.id',
-  `weight` int(10) unsigned NOT NULL,
-  `query` varchar(3072) NOT NULL,
-  KEY `query` (`query`(255))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 CONNECTION='sphinx://127.0.0.1:9312/o_delta:o_index';
+### order\_index [已作废]
+
+```
+	CREATE TABLE `order_index` (
+	  `id` int(10) unsigned NOT NULL COMMENT 'order.id',
+	  `weight` int(10) unsigned NOT NULL,
+	  `query` varchar(3072) NOT NULL,
+	  KEY `query` (`query`(255))
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 CONNECTION='sphinx://127.0.0.1:9312/o_delta:o_index';
+```
 
 -- ----------------------------
-### order_product
--- ----------------------------
-DROP TABLE IF EXISTS `order_product`;
-CREATE TABLE `order_product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL DEFAULT '0',
-  `product_id` int(11) DEFAULT NULL,
-  `product_alternative` varchar(128) DEFAULT NULL,
-  `product_price` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `declared_price` decimal(15,4) DEFAULT '0.0000',
-  `avg_buy_price` decimal(15,4) DEFAULT NULL,
-  `product_quantity` int(11) NOT NULL DEFAULT '0',
-  `product_original_quantity` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `products_id` (`product_id`),
-  KEY `order_id` (`order_id`),
-  CONSTRAINT `order_product_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
-  CONSTRAINT `order_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4768970 DEFAULT CHARSET=utf8;
+### order\_product
+
+```
+	CREATE TABLE `order_product` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `order_id` int(11) NOT NULL DEFAULT '0',
+	  `product_id` int(11) DEFAULT NULL,
+	  `product_alternative` varchar(128) DEFAULT NULL,
+	  `product_price` decimal(15,4) NOT NULL DEFAULT '0.0000',
+	  `declared_price` decimal(15,4) DEFAULT '0.0000',
+	  `avg_buy_price` decimal(15,4) DEFAULT NULL,
+	  `product_quantity` int(11) NOT NULL DEFAULT '0',
+	  `product_original_quantity` int(11) NOT NULL DEFAULT '0',
+	  PRIMARY KEY (`id`),
+	  KEY `products_id` (`product_id`),
+	  KEY `order_id` (`order_id`),
+	  CONSTRAINT `order_product_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
+	  CONSTRAINT `order_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=4768970 DEFAULT CHARSET=utf8;
+```
 
 -- ----------------------------
-### order_product_change
--- ----------------------------
-DROP TABLE IF EXISTS `order_product_change`;
-CREATE TABLE `order_product_change` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_log_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `price_before` decimal(15,4) NOT NULL,
-  `price_after` decimal(15,4) NOT NULL,
-  `q_before` int(11) NOT NULL,
-  `q_after` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `order_product_change_ibfk_1` (`event_log_id`),
-  KEY `order_product_change_ibfk_2` (`product_id`),
-  CONSTRAINT `order_product_change_ibfk_1` FOREIGN KEY (`event_log_id`) REFERENCES `event_log` (`id`),
-  CONSTRAINT `order_product_change_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=92077 DEFAULT CHARSET=utf8;
+### order\_product\_change
 
+```
+	CREATE TABLE `order_product_change` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `event_log_id` int(11) NOT NULL,				// 订单产品发生改变，写入事件日志
+	  `product_id` int(11) NOT NULL,
+	  `price_before` decimal(15,4) NOT NULL,
+	  `price_after` decimal(15,4) NOT NULL,
+	  `q_before` int(11) NOT NULL,					// ???
+	  `q_after` int(11) NOT NULL,					// ???
+	  PRIMARY KEY (`id`),
+	  KEY `order_product_change_ibfk_1` (`event_log_id`),
+	  KEY `order_product_change_ibfk_2` (`product_id`),
+	  CONSTRAINT `order_product_change_ibfk_1` FOREIGN KEY (`event_log_id`) REFERENCES `event_log` (`id`),
+	  CONSTRAINT `order_product_change_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=92077 DEFAULT CHARSET=utf8;
+```
 -- ----------------------------
 ### order_purchase
 -- ----------------------------
