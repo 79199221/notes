@@ -316,9 +316,8 @@
 ### alert [已废弃]
 
 > 空表
-> 
-```
 
+```
 	CREATE TABLE `alert` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `job_name` varchar(50) NOT NULL,
@@ -331,8 +330,6 @@
 	  KEY `admin_group_id` (`admin_group_id`),
 	  CONSTRAINT `alert_ibfk_1` FOREIGN KEY (`admin_group_id`) REFERENCES `admin_group` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 ```
 
 -- ----------------------------
