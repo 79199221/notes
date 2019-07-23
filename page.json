@@ -12,7 +12,7 @@
   },
   "links": {
     "sidebar": {
-      "我的博客": "https://blog.csdn.net/kuangshp128" 
+      "我的博客": "https://github.com/79199221/notes" 
     }
   },
   "plugins": [ 
@@ -30,7 +30,7 @@
   ],
   "pluginsConfig": {
     "github": {
-      "url": "https://github.com/kuangshp/"
+      "url": "https://github.com/79199221/notes"
     },
     "github-buttons": {
       "buttons": [{
