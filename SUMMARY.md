@@ -1,7 +1,8 @@
 # Summary
 
 * [Introduction](README.md)
-* 
+
+* [关于项目](interview/info.md)
 * [数据库](interview/database.md)
 * [面试](interview/index.md)
 	* [基础知识](interview/index.md#basic)
