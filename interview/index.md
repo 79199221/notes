@@ -8,15 +8,11 @@
 
 ```
 
-
-
 > PHP 多继承的实现方法
 
 ```
 
 ```
-
-
 
 * ### 中级知识<i id="middle" />
 
@@ -54,4 +50,39 @@ mysqldump
 
 ```
 1.session是一种会话控制，经常被我们用到登录控制，session经常和cookie一起用到，首先我们应该知道HTTP协议是无状态的，每个页面之间很难保持同步【登录】，这个时候就用到session了，session在使用时，如果我们不修改配置文件，每次使用都要用到session_start();这个函数开启session；然后会生成一个唯一的session_id;这个session_id;一般是储存在cookie中的，【来标注是这次会话的唯一ID】。当这次会话没结束时，再次访问的时候，就会去找这个session_id;看它有没有过期（是否存在），可以读取，就继续使用这个session_id;没有就会去重行生成一个session_id;这时如果关闭浏览器，那么这个session_id就会不存在了。
+
+session_start();			// 开启session
+$_SESSION['key'] = 'value';	// 设置session值
+echo $_SESSION['key'];		// 访问session
+echo $_COOKIE['PHPSESSID'];	// 访问session_id
+
+// PHP配置文件
+[Session]
+session.save_handler = files 			// 默认session以文件形式保存
+session.save_path = "d:/wamp/tmp"		// 设置session的保存位置
+session.use_cookies = 1					// 表示会在浏览器里创建值为PHPSESSID的session_id
+session.name = PHPSESSID 				// 配置session_id在cookie里面的名字
+session.auto_start = 0 					// 是否默认开启session，默认不开起
+session.cookie_lifetime = 0 			// 在客户端生成PHPSESSID这个cookie的过期时间，默认是0，也就是关闭浏览器就过期，下次访问，会再次生成一个session_id。所以，如果想关闭浏览器会话后，希望session信息能够保持的时间长一点，可以把这个值设置大一点，单位是秒。
+session.serialize_handler = php 		// 定义用来序列化/反序列化的处理器名字。默认使用php
+session.gc_divisor = 1000 				//
+session.gc_probability = 1				//
+session.gc_maxlifetime = 1440
+// session.gc_divisor 与 session.gc_probability 合起来定义了在每个会话初始化时启动 gc（garbage collection 垃圾回收）进程的概率。此概率用 gc_probability/gc_divisor 计算得来。例如 1/100 意味着在每个请求中有 1% 的概率启动 gc 进程。session.gc_divisor 默认为 100。
+
+// 其实也有函数来操作这些
+unset($_SESSION['key']);				// 销毁某一个session变量
+session_unset();						// 销毁全部session变量
+session_destory();						// 销毁session文件
+setcookie(session_name(),'',time()-3600,'/');//设置session_id的存取时间
+
+// 上面说到session在配置文件里默认是以文件的形式保存【file】,它还可以保存在数据库【redis,mamached】中 
+session.save_handler = redis
+session.save_path = "http://127.0.0.1:6379"
 ```
+
+> 对session怎么理解？session的工作原理？session工作时，为什么会开启session_start?session怎么自动存入数据库
+> 对于版本控制工具git，有没有使用过？它的一些基本命令是什么？在团队合作中是否用过它？项目中线上分支和本地分支
+> 是否了解面向对象？面向对象的三大特性是什么？具体介绍
+> 对于mysql数据库，你所用过的存储引擎有哪些？它们的区别是什么？知道什么是锁吗？怎么理解mysql的表级锁和行级锁
+> 对于PHP和Apache或者PHP和Nginx，你知道Apache和Nginx是什么吗？它们与PHP的关系是什么？它们是怎么工作的
