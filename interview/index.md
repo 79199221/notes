@@ -47,6 +47,11 @@ RBAC 可以将不同的用户分配给不同的用户组，即角色，每个角
 > mysql经常出现坏表，一般手动用命令修复，有什么方案可以防止并且做到自动修复？
 ```
 mysqldump
+
 ```
 
+> 对session怎么理解？session的工作原理？session工作时，为什么会开启session_start?session怎么自动存入数据库
 
+```
+1.session是一种会话控制，经常被我们用到登录控制，session经常和cookie一起用到，首先我们应该知道HTTP协议是无状态的，每个页面之间很难保持同步【登录】，这个时候就用到session了，session在使用时，如果我们不修改配置文件，每次使用都要用到session_start();这个函数开启session；然后会生成一个唯一的session_id;这个session_id;一般是储存在cookie中的，【来标注是这次会话的唯一ID】。当这次会话没结束时，再次访问的时候，就会去找这个session_id;看它有没有过期（是否存在），可以读取，就继续使用这个session_id;没有就会去重行生成一个session_id;这时如果关闭浏览器，那么这个session_id就会不存在了。
+```
