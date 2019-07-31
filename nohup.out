@@ -1,0 +1,39 @@
+ERROR Plugin load failed: hexo-renderer-sass
+Error: Missing binding /code/vue/work/node_modules/node-sass/vendor/linux-x64-64/binding.node
+Node Sass could not find a binding for your current environment: Linux 64-bit with Node.js 10.x
+
+Found bindings for the following environments:
+  - Windows 64-bit with Node.js 10.x
+
+This usually happens because your environment has changed since running `npm install`.
+Run `npm rebuild node-sass` to download the binding for your current environment.
+    at module.exports (/code/vue/work/node_modules/node-sass/lib/binding.js:15:13)
+    at Object.<anonymous> (/code/vue/work/node_modules/node-sass/lib/index.js:14:35)
+    at Module._compile (internal/modules/cjs/loader.js:701:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)
+    at Module.load (internal/modules/cjs/loader.js:600:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:531:3)
+    at Module.require (internal/modules/cjs/loader.js:637:17)
+    at require (internal/modules/cjs/helpers.js:22:18)
+    at Object.<anonymous> (/code/vue/work/node_modules/hexo-renderer-sass/lib/renderer.js:4:12)
+    at Module._compile (internal/modules/cjs/loader.js:701:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:712:10)
+    at Module.load (internal/modules/cjs/loader.js:600:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:539:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:531:3)
+    at Module.require (internal/modules/cjs/loader.js:637:17)
+    at require (/code/vue/work/node_modules/hexo/lib/hexo/index.js:219:21)
+    at /code/vue/work/node_modules/hexo-renderer-sass/index.js:4:20
+    at fs.readFile.then.script (/code/vue/work/node_modules/hexo/lib/hexo/index.js:232:12)
+    at tryCatcher (/code/vue/work/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/code/vue/work/node_modules/bluebird/js/release/promise.js:517:31)
+    at Promise._settlePromise (/code/vue/work/node_modules/bluebird/js/release/promise.js:574:18)
+Usage: hexo <command>
+
+Commands:
+  clean     Remove generated files and cache.  config    Get or set configurations.  deploy    Deploy your website.  generate  Generate static files.  help      Get help on a command.  init      Create a new Hexo folder.  list      List the information of the site  migrate   Migrate your site from other system to Hexo.  new       Create a new post.  publish   Moves a draft post from _drafts to _posts folder.  render    Render files with renderer plugins.  server    Start the server.  version   Display version information.
+Global Options:
+  --config  Specify config file instead of using _config.yml  --cwd     Specify the CWD  --debug   Display all verbose messages in the terminal  --draft   Display draft posts  --safe    Disable all plugins and scripts  --silent  Hide output on console
+For more help, you can use 'hexo help [command]' for the detailed information
+or you can check the docs: http://hexo.io/docs/

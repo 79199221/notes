@@ -67,6 +67,11 @@
           "type": "link",
           "path": "pages/notes/ubuntu.html"
         },
+        {
+          "text": "MySQL",
+          "type": "link",
+          "path": "pages/notes/mysql.html"
+        },
         
       ]
     },
