@@ -26,7 +26,14 @@ pv cifs-utils mcrypt bash-completion zsh graphviz avahi-daemon bash-completion
 
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
-vagrant="local"
+user="xiaozi"
+egrep "^$user" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+    useradd $user
+fi
+
+user="xiaozi"
 
 # 安装 PHP
 # PHP 7.3
@@ -92,10 +99,10 @@ rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 
 # Create a configuration file for Nginx overrides.
-sudo mkdir -p /home/${vagrant}/.config/nginx
-sudo chown -R ${vagrant}:${vagrant} /home/${vagrant}
-touch /home/${vagrant}/.config/nginx/nginx.conf
-sudo ln -sf /home/${vagrant}/.config/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
+sudo mkdir -p /home/${user}/.config/nginx
+sudo chown -R ${user}:${user} /home/${user}
+touch /home/${user}/.config/nginx/nginx.conf
+sudo ln -sf /home/${user}/.config/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 
 # PHP-FPM 配置
 echo "xdebug.remote_enable = 1" >> /etc/php/7.3/mods-available/xdebug.ini
@@ -225,42 +232,42 @@ fastcgi_param	REDIRECT_STATUS		200;
 EOF
 
 # 设置 Nginx & PHP-FPM 用户
-sed -i "s/user www-data;/user ${vagrant};/" /etc/nginx/nginx.conf
+sed -i "s/user www-data;/user ${user};/" /etc/nginx/nginx.conf
 sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
 
-sed -i "s/user = www-data/user = ${vagrant}/" /etc/php/7.3/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = ${vagrant}/" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = ${user}/" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = ${user}/" /etc/php/7.3/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = ${vagrant}/" /etc/php/7.3/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = ${vagrant}/" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = ${user}/" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = ${user}/" /etc/php/7.3/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.3/fpm/pool.d/www.conf
 
-sed -i "s/user = www-data/user = ${vagrant}/" /etc/php/7.2/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = ${vagrant}/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = ${user}/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = ${user}/" /etc/php/7.2/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = ${vagrant}/" /etc/php/7.2/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = ${vagrant}/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = ${user}/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = ${user}/" /etc/php/7.2/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.2/fpm/pool.d/www.conf
 
-sed -i "s/user = www-data/user = ${vagrant}/" /etc/php/7.1/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = ${vagrant}/" /etc/php/7.1/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = ${user}/" /etc/php/7.1/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = ${user}/" /etc/php/7.1/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = ${vagrant}/" /etc/php/7.1/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = ${vagrant}/" /etc/php/7.1/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = ${user}/" /etc/php/7.1/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = ${user}/" /etc/php/7.1/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.1/fpm/pool.d/www.conf
 
-sed -i "s/user = www-data/user = ${vagrant}/" /etc/php/7.0/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = ${vagrant}/" /etc/php/7.0/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = ${user}/" /etc/php/7.0/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = ${user}/" /etc/php/7.0/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = ${vagrant}/" /etc/php/7.0/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = ${vagrant}/" /etc/php/7.0/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = ${user}/" /etc/php/7.0/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = ${user}/" /etc/php/7.0/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.0/fpm/pool.d/www.conf
 
-sed -i "s/user = www-data/user = ${vagrant}/" /etc/php/5.6/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = ${vagrant}/" /etc/php/5.6/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = ${user}/" /etc/php/5.6/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = ${user}/" /etc/php/5.6/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = ${vagrant}/" /etc/php/5.6/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = ${vagrant}/" /etc/php/5.6/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = ${user}/" /etc/php/5.6/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = ${user}/" /etc/php/5.6/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/5.6/fpm/pool.d/www.conf
 
 service nginx restart
@@ -271,9 +278,9 @@ service php7.0-fpm restart
 service php5.6-fpm restart
 
 # Add Vagrant User To WWW-Data
-usermod -a -G www-data ${vagrant}
-id ${vagrant}
-groups ${vagrant}
+usermod -a -G www-data ${user}
+id ${user}
+groups ${user}
 
 # 安装 Node.js
 apt-get install -y nodejs
@@ -302,13 +309,13 @@ sed -i '/^bind-address/s/bind-address.*=.*/bind-address = 0.0.0.0/' /etc/mysql/m
 mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO root@'0.0.0.0' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
 service mysql restart
 
-mysql --user="root" --password="secret" -e "CREATE USER '${vagrant}'@'0.0.0.0' IDENTIFIED BY 'secret';"
-mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO '${vagrant}'@'0.0.0.0' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
-mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO '${vagrant}'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
+mysql --user="root" --password="secret" -e "CREATE USER '${user}'@'0.0.0.0' IDENTIFIED BY 'secret';"
+mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO '${user}'@'0.0.0.0' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
+mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO '${user}'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
 mysql --user="root" --password="secret" -e "FLUSH PRIVILEGES;"
-mysql --user="root" --password="secret" -e "CREATE DATABASE ${vagrant} character set UTF8mb4 collate utf8mb4_bin;"
+mysql --user="root" --password="secret" -e "CREATE DATABASE ${user} character set UTF8mb4 collate utf8mb4_bin;"
 
-sudo tee /home/${vagrant}/.my.cnf <<EOL
+sudo tee /home/${user}/.my.cnf <<EOL
 [mysqld]
 character-set-server=utf8mb4
 collation-server=utf8mb4_bin
@@ -329,11 +336,11 @@ apt-get upgrade -y
 # Clean Up
 apt -y autoremove
 apt -y clean
-chown -R ${vagrant}:${vagrant} /home/${vagrant}
-chown -R ${vagrant}:${vagrant} /usr/local/bin
+chown -R ${user}:${user} /home/${user}
+chown -R ${user}:${user} /usr/local/bin
 
 # Add Composer Global Bin To Path
-printf "\nPATH=\"$(sudo su - ${vagrant} -c 'composer config -g home 2>/dev/null')/vendor/bin:\$PATH\"\n" | tee -a /home/${vagrant}/.profile
+printf "\nPATH=\"$(sudo su - ${user} -c 'composer config -g home 2>/dev/null')/vendor/bin:\$PATH\"\n" | tee -a /home/${user}/.profile
 
 # Perform some cleanup from chef/bento packer_templates/ubuntu/scripts/cleanup.sh
 # Delete Linux source
