@@ -76,6 +76,22 @@
       ]
     },
     {
+      "text": "MySQL",
+      "type": "link",
+      "path": "pages/mysql/index.html",
+      "children":[
+        
+      ]
+    },
+    {
+      "text": "Nginx",
+      "type": "link",
+      "path": "pages/nginx/index.html",
+      "children":[
+        
+      ]
+    },
+    {
       "text": "To HTML",
       "type": "link",
       "path": "swagger/to-html.html"

@@ -1,4 +1,6 @@
-title: hexo-theme-doc-seed
+title: 我的文档
+keywords: 小子|我的文档
+description: 小子的文档
 ---
 
 # hexo-theme-doc-seed
