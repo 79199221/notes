@@ -76,6 +76,14 @@
       ]
     },
     {
+      "text": "Nginx",
+      "type": "link",
+      "path": "pages/nginx/index.html",
+      "children":[
+        
+      ]
+    },
+    {
       "text": "MySQL",
       "type": "link",
       "path": "pages/mysql/index.html",
@@ -84,9 +92,9 @@
       ]
     },
     {
-      "text": "Nginx",
+      "text": "PHP",
       "type": "link",
-      "path": "pages/nginx/index.html",
+      "path": "pages/php/index.html",
       "children":[
         
       ]
