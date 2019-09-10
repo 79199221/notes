@@ -57,6 +57,11 @@
           "type": "link",
           "path": "pages/notes/mysql.html"
         },
+        {
+          "text": "账号",
+          "type": "link",
+          "path": "pages/notes/account.html"
+        },
         
       ]
     },
@@ -68,6 +73,18 @@
           "text": "Nginx",
           "type": "link",
           "path": "pages/nginx/index.html"
+        },
+        
+      ]
+    },
+    {
+      "text": "Apache",
+      "type": "label",
+      "children":[
+        {
+          "text": "Apache",
+          "type": "link",
+          "path": "pages/apache/index.html"
         },
         
       ]

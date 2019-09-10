@@ -1,0 +1,19 @@
+## nginx + memcached 页面缓存
+```
+upstream memcacheds {
+	  server 127.0.0.1:11211;
+}
+location / {
+
+    set $memcached_key "laravel_cache:$request_uri";
+    memcached_pass memcacheds;
+    add_header X-mem-key  $memcached_key;
+    add_header Content-Encoding gzip;
+    default_type text/html;
+}
+error_page     404 502 504 = @fallback;
+location @fallback {
+    root /www/wwwroot/laravel-excel/public;
+    try_files $uri $uri/ /index.php$is_args$query_string;
+}
+```
