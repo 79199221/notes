@@ -10,23 +10,6 @@
       "type": "label"
     },
     {
-      "text": "入门",
-      "type": "link",
-      "path": "pages/starts/index.html",
-      "children": [
-        {
-          "text": "UI",
-          "type": "link",
-          "path": "pages/starts/index.html#mysql"
-        },
-        {
-          "text": "UI",
-          "type": "link",
-          "path": "pages/starts/index.html#mysql"
-        }
-      ]
-    },
-    {
       "text": "CHINAVASION",
       "type": "label",
       "path": "swagger/ui.html",
@@ -46,16 +29,18 @@
     },
     {
       "text": "面试",
-      "type": "link",
-      "path": "pages/interviews/index.html",
+      "type": "label",
       "children":[
-        
+        {
+          "text": "面试",
+          "type": "link",
+          "path": "pages/interviews/index.html"
+        },
       ]
     },
     {
       "text": "总结",
-      "type": "link",
-      "path": "/pages/notes/index.html",
+      "type": "label",
       "children":[
         {
           "text": "关于项目",
@@ -77,25 +62,39 @@
     },
     {
       "text": "Nginx",
-      "type": "link",
-      "path": "pages/nginx/index.html",
+      "type": "label",
       "children":[
+        {
+          "text": "Nginx",
+          "type": "link",
+          "path": "pages/nginx/index.html"
+        },
         
       ]
     },
     {
       "text": "MySQL",
-      "type": "link",
+      "type": "label",
       "path": "pages/mysql/index.html",
       "children":[
+        {
+          "text": "MySQL",
+          "type": "link",
+          "path": "pages/mysql/index.html"
+        },
         
       ]
     },
     {
       "text": "PHP",
-      "type": "link",
+      "type": "label",
       "path": "pages/php/index.html",
       "children":[
+        {
+          "text": "PHP",
+          "type": "link",
+          "path": "pages/php/index.html"
+        },
         
       ]
     },
@@ -107,11 +106,6 @@
     {
       "text": "SUPPORT AND FEEDBACK",
       "type": "label"
-    },
-    {
-      "text": "Raise an Issue on Github",
-      "type": "link",
-      "path": "https://github.bus.zalan.do/stargate/hexo-stargate-doc-theme-seed/issues/new"
     }
   ]
 }
