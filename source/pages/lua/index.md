@@ -60,3 +60,6 @@ ngx.req.set_header("Test_Ngx_Var",nil)
 # 返回table类型的数据
 ngx.req.get_headers()
 ```
+
+8. ngx_headers.HEADER
+> 修改响应头
