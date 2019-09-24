@@ -34,32 +34,32 @@ ngx.say('hello,world!')
 # ;;代表LuaJIT安装时的原始搜索路径
 lua_package_path "other/path/?.lua;${prefix}conf/lua_modules/?.lua;;"
 ```
-
 4. lua_package_cpath
 >定义C模块的搜索路径
 
-5. ngx.req.set_header
-> 添加请求头
+## 请求与响应
+
+1. 添加请求头
+> ngx.req.set_header
 ```
-# 设置单个值
+-- 设置单个值
 ngx.req.set_header("Test_Ngx_Var","1.12.2")
-# 设置多个值
+-- 设置多个值
 ngx.req.set_header("Test",{"1","2"})
 ```
-
-6. ngx.req.clear_header
-> 请除请求头
+2. 请除请求头
+> ngx.req.clear_header
 ```
 ngx.req.clear_header("Test_Ngx_var")
 ngx.req.set_header("Test_Ngx_Var",nil)
 ```
 
-7. ngx.req.get_headers
-> 获取请求头
+3. 获取请求头
+> ngx.req.get_headers
 ```
-# 返回table类型的数据
+-- 返回table类型的数据
 ngx.req.get_headers()
 ```
 
-8. ngx_headers.HEADER
+4. ngx_headers.HEADER
 > 修改响应头
