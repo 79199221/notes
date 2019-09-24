@@ -37,29 +37,71 @@ lua_package_path "other/path/?.lua;${prefix}conf/lua_modules/?.lua;;"
 4. lua_package_cpath
 >定义C模块的搜索路径
 
-## 请求与响应
+## 请求头与响应头
 
 1. 添加请求头
+
 > ngx.req.set_header
+
 ```
 -- 设置单个值
 ngx.req.set_header("Test_Ngx_Var","1.12.2")
 -- 设置多个值
 ngx.req.set_header("Test",{"1","2"})
 ```
-2. 请除请求头
+
+2. 清除请求头
+
 > ngx.req.clear_header
+
 ```
 ngx.req.clear_header("Test_Ngx_var")
 ngx.req.set_header("Test_Ngx_Var",nil)
 ```
 
 3. 获取请求头
+
 > ngx.req.get_headers
+
 ```
 -- 返回table类型的数据
 ngx.req.get_headers()
 ```
 
 4. ngx_headers.HEADER
+
 > 修改响应头
+
+```
+--在代码里“_”，输出时就变成了“-”
+ngx.header.Test_Nginx = 'Lua'
+--等同于：
+ngx.header['Test_Nginx'] = 'Lua'
+读取响应头
+nginx.header.Test_Nginx
+```
+
+5. 清除请求头
+
+```
+ngx.header['X-Test'] = nil
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
