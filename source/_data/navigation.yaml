@@ -83,6 +83,18 @@
       ]
     },
     {
+      "text": "Lua",
+      "type": "label",
+      "children":[
+        {
+          "text": "Lua",
+          "type": "link",
+          "path": "pages/lua/index.html"
+        },
+        
+      ]
+    },
+    {
       "text": "Apache",
       "type": "label",
       "children":[
