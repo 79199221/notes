@@ -58,6 +58,11 @@
           "path": "pages/notes/mysql.html"
         },
         {
+          "text": "Redis",
+          "type": "link",
+          "path": "pages/notes/redis.html"
+        },
+        {
           "text": "账号",
           "type": "link",
           "path": "pages/notes/account.html"
