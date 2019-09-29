@@ -95,6 +95,18 @@
       ]
     },
     {
+      "text": "Redis",
+      "type": "label",
+      "children":[
+        {
+          "text": "Redis",
+          "type": "link",
+          "path": "pages/redis/index.html"
+        },
+        
+      ]
+    },
+    {
       "text": "Apache",
       "type": "label",
       "children":[
