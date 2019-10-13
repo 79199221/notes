@@ -1,0 +1,102 @@
+title: 我的文档
+---
+
+## 一、 ngx_http_core_module
+## 一、 ngx_http_access_module
+## 一、 ngx_http_addition_module
+## 一、 ngx_http_api_module
+## 一、 ngx_http_auth_basic_module
+ngx_http_auth_jwt_module
+ngx_http_auth_request_module
+ngx_http_autoindex_module
+ngx_http_browser_module
+ngx_http_charset_module
+ngx_http_dav_module
+ngx_http_empty_gif_module
+ngx_http_f4f_module
+ngx_http_fastcgi_module
+ngx_http_flv_module
+ngx_http_geo_module
+ngx_http_geoip_module
+ngx_http_grpc_module
+ngx_http_gunzip_module
+ngx_http_gzip_module
+ngx_http_gzip_static_module
+ngx_http_headers_module
+ngx_http_hls_module
+ngx_http_image_filter_module
+ngx_http_index_module
+ngx_http_js_module
+ngx_http_keyval_module
+ngx_http_limit_conn_module
+ngx_http_limit_req_module
+ngx_http_log_module
+ngx_http_map_module
+ngx_http_memcached_module
+ngx_http_mirror_module
+ngx_http_mp4_module
+ngx_http_perl_module
+ngx_http_proxy_module
+ngx_http_random_index_module
+ngx_http_realip_module
+ngx_http_referer_module
+ngx_http_rewrite_module
+ngx_http_scgi_module
+ngx_http_secure_link_module
+ngx_http_session_log_module
+ngx_http_slice_module
+ngx_http_spdy_module
+ngx_http_split_clients_module
+ngx_http_ssi_module
+
+
+---
+## 五十一、 ngx_http_ssl_module
+> 该模块为HTTPS提供必要的支持
+> 默认情况下未构建此模块，应使用 --with-http_ssl_module配置参数启用它
+> 该模块需要openssl库
+> 为了减少处理器负载：
+> 1. 将 worker process 设置为 等于处理器数
+> 2. 启用 keep-alive 连接
+> 3. 启用 会话缓存
+> 4. 禁用内置的会话缓存
+> 5. 延长会话寿命（默认情况下为5分钟）
+
+
+---
+## 五十二、 ngx_http_status_module
+ngx_http_stub_status_module
+ngx_http_sub_module
+ngx_http_upstream_module
+ngx_http_upstream_conf_module
+ngx_http_upstream_hc_module
+ngx_http_userid_module
+ngx_http_uwsgi_module
+ngx_http_v2_module
+ngx_http_xslt_module
+ngx_mail_core_module
+ngx_mail_auth_http_module
+ngx_mail_proxy_module
+ngx_mail_ssl_module
+ngx_mail_imap_module
+ngx_mail_pop3_module
+ngx_mail_smtp_module
+ngx_stream_core_module
+ngx_stream_access_module
+ngx_stream_geo_module
+ngx_stream_geoip_module
+ngx_stream_js_module
+ngx_stream_keyval_module
+ngx_stream_limit_conn_module
+ngx_stream_log_module
+ngx_stream_map_module
+ngx_stream_proxy_module
+ngx_stream_realip_module
+ngx_stream_return_module
+ngx_stream_split_clients_module
+ngx_stream_ssl_module
+ngx_stream_ssl_preread_module
+ngx_stream_upstream_module
+ngx_stream_upstream_hc_module
+ngx_stream_zone_sync_module
+ngx_google_perftools_module

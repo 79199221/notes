@@ -1,62 +1,37 @@
-title: Redis
+title: Start
 ---
 
-## 六、Stream
+## 一、安装
 
 ```
-# 添加数据
-> xadd student * zhangsan henan
-"1569741090287-0"
-> xadd student * lisi guangzhou
-"1569741104701-0"
-> xdel student 1569741104701-0
-(integer) 1
-> xadd student * lisi guangdong
-"1569741134395-0"
-> xadd student * wangwu sichuan
-"1569741158409-0"
-> xadd student * lisi hebei
-"1569741171652-0"
-#查看长度
-> xlen student
-(integer) 4
-# 查看类型
-> type student
-stream
-# 查看所有值
-> xrange student - +
-1) 1) "1569741090287-0"
-   2) 1) "zhangsan"
-      2) "henan"
-2) 1) "1569741134395-0"
-   2) 1) "lisi"
-      2) "guangdong"
-3) 1) "1569741158409-0"
-   2) 1) "wangwu"
-      2) "sichuan"
-4) 1) "1569741171652-0"
-   2) 1) "lisi"
-      2) "hebei"
-# 查看 n 条值
-> xrange student - + count 1
-1) 1) "1569741090287-0"
-   2) 1) "zhangsan"
-      2) "henan"
-# 查看指定范围内的值
-> xrange student 1569741134395-0 1569741171652-0
-1) 1) "1569741134395-0"
-   2) 1) "lisi"
-      2) "guangdong"
-2) 1) "1569741158409-0"
-   2) 1) "wangwu"
-      2) "sichuan"
-3) 1) "1569741171652-0"
-   2) 1) "lisi"
-      2) "hebei"
+wget http://download.redis.io/releases/redis-5.0.5.tar.gz
+tar -zxvf redis-5.0.5.tar.gz
+cd redis-5.0.5
+make
 ```
 
+## 二、启动
 
+```
+./redis-server /usr/local/redis/redis.conf
+```
 
+## 三、开机启动
+
+```
+makedir /etc/redis
+cp /usr/local/redis/redis.conf /etc/redis/6379.conf
+cp /usr/local/redis/utils/redis_init_script /etc/init.d/redisd
+chkconfig redisd on
+// 如果提示：service redisd does not support chkconfig
+// 说明redisd不支持chkconfig
+// 在redisd第一行加入如下注释
+# chkconfig:   2345 90 10
+# description:  Redis is a persistent key-value database
+
+service redisd start
+service redisd stop
+```
 
 
 

@@ -75,15 +75,30 @@
       "type": "label",
       "children":[
         {
-          "text": "Nginx",
+          "text": "Start",
           "type": "link",
           "path": "pages/nginx/index.html"
+        },
+        {
+          "text": "Nginx.conf",
+          "type": "link",
+          "path": "pages/nginx/conf.html"
+        },
+        {
+          "text": "Module",
+          "type": "link",
+          "path": "pages/nginx/module.html"
+        },
+        {
+          "text": "Variable",
+          "type": "link",
+          "path": "pages/nginx/variable.html"
         },
         
       ]
     },
     {
-      "text": "Lua",
+      "text": "OpenResty",
       "type": "label",
       "children":[
         {
@@ -99,9 +114,19 @@
       "type": "label",
       "children":[
         {
-          "text": "Redis",
+          "text": "Start",
           "type": "link",
           "path": "pages/redis/index.html"
+        },
+        {
+          "text": "Data Structure",
+          "type": "link",
+          "path": "pages/redis/data_structure.html"
+        },
+        {
+          "text": "Redis.conf",
+          "type": "link",
+          "path": "pages/redis/conf.html"
         },
         
       ]
@@ -137,9 +162,14 @@
       "path": "pages/php/index.html",
       "children":[
         {
-          "text": "PHP",
+          "text": "Install",
           "type": "link",
           "path": "pages/php/index.html"
+        },
+        {
+          "text": "Function",
+          "type": "link",
+          "path": "pages/php/function.html"
         },
         
       ]

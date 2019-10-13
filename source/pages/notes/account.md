@@ -3,9 +3,9 @@ title: 我的文档
 
 ## 我的账号
 
-<table>
 <style>table tbody tr td{word-wrap:break-word;word-break:break-all;}</style>
 <style>table tbody tr td:first-child{word-wrap:normal;word-break:keep-all;}</style>
+<table>
 <thead>
 	<tr>
 		<th>项目</th>
