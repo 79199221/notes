@@ -153,6 +153,11 @@
           "type": "link",
           "path": "pages/mysql/index.html"
         },
+        {
+          "text": "Router",
+          "type": "link",
+          "path": "pages/mysql/router.html"
+        },
         
       ]
     },
