@@ -6,6 +6,9 @@ title: 我的文档
 
 ## 常用链接
 
+> PHPSTORM 破解
+http://lookdiv.com 钥匙 `lookdiv`
+
 > 服务器
 1. [腾讯云](https://cloud.tencent.com/)
 
