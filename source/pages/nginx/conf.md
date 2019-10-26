@@ -67,6 +67,17 @@ server {
 };
 ```
 
+> mysql反向代理
+```
+stream {
+    server {
+		listen  50001;
+		proxy_timeout   525600m; //两个成功的读或写操作之间的间隔时间，超出这个时间连接会关闭。这里设置为1年
+		proxy_pass  127.0.0.2:3306;
+	}
+}
+```
+
 > /path/to/nginx/conf/php/enable-php-73.conf
 ```
     location ~ [^/]\.php(/|$)
