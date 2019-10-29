@@ -20,6 +20,7 @@ relative_link: false
 theme: ../node_modules/hexo-theme-doc
 
 theme_config:
+  google_analytics: G-PJR4WXZYGC
   favicon: images/favicon.ico
 
 ignore:
