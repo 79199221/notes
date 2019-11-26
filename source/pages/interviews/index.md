@@ -221,7 +221,7 @@ function findSolution($i, $j, $k, $n) {
 		return [$c10, $c5, $c2];
 	}
 	if(--$c5 < 0) {
-		$j==0 && die('不能分');
+		($i==0 || $c10<1) && die('不能分');
 		$c10--;
 		$c5 = $c5+2;
 	}
@@ -229,4 +229,26 @@ function findSolution($i, $j, $k, $n) {
 	$c2 > $k && die('不能分');
 	return [$c10, $c5, $c2];
 }
+
+def findSolution(i, j, k, n):
+    c10 = min(math.floor(n / 10), i)
+    c5 = min(math.floor((n - c10 * 10)/5), j)
+    c2 = math.floor((n - c10 * 10 - c5 * 5)/2)
+    if c2 > k:
+        return '不能分'
+    if (n - c10 * 10 - c5 * 5) %2 == 0:
+        return [c10, c5, c2]
+    c5 -= 1
+    if c5 < 0:
+        if i == 0 or c10 < 1:
+            return '不能分'
+        c10 -= 1
+        c5 += 2
+    c2 = math.floor((n - c10 * 10 - c5 * 5) / 2)
+    if c2 > k:
+        return'不能分'
+    return [c10, c5, c2]
+
+
+print(findSolution(1, 11, 11, 33))
 ```
