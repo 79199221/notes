@@ -67,6 +67,11 @@
           "type": "link",
           "path": "pages/notes/account.html"
         },
+        {
+          "text": "账号",
+          "type": "link",
+          "path": "pages/notes/command.html"
+        },
         
       ]
     },
