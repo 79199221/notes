@@ -209,7 +209,7 @@ mod_php 和 fast-cgi 的模式在每个进程的生命周期内能够处理多�
 综上，如果对性能有极高的要求，可以将静态请求和动态请求分开，这时 Nginx + php-fpm 是比较好的选择。
 ```
 
-## 面试题
+## 算法题
 
 ```
 function findSolution($i, $j, $k, $n) {
