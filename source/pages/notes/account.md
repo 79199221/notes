@@ -18,7 +18,7 @@ title: 我的文档
 </thead>
 <tbody>
 	<tr>
-	    <th rowspan="4">ChinaVasion</th>
+	    <th rowspan="5">ChinaVasion</th>
 	    <td rowspan="3">老后台</td>
 	    <td rowspan="3">https://admin.chinavasion.com</td>
 	    <td>worm<hr/></td>
@@ -36,6 +36,13 @@ title: 我的文档
 	<tr>
 	    <td>新后台</td>
 	    <td>http://houtai.chinavasion.com</td>
+	    <td>datafeeds@chinavasion.com</td>
+	    <td>D@8X0oi(28^!9nx</td>
+	    <td></td>
+	</tr>
+	<tr>
+	    <td>database邮箱</td>
+	    <td>https://mail.google.com/</td>
 	    <td>alexzhang@chinavasion.com</td>
 	    <td>alexzhang@chinavasion.com</td>
 	    <td></td>
