@@ -181,6 +181,11 @@
           "type": "link",
           "path": "pages/php/function.html"
         },
+        {
+          "text": "Laravel",
+          "type": "link",
+          "path": "pages/php/laravel.html"
+        },
         
       ]
     },
